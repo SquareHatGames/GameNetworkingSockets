@@ -1271,6 +1271,22 @@ EResult CSteamNetworkingSockets::SendMessageToConnection( HSteamNetConnection hC
 	return pConn->APISendMessageToConnection( pData, cbData, nSendFlags, pOutMessageNumber );
 }
 
+bool CSteamNetworkingSockets::CanSendMessage(SteamNetworkingMessage_t* const pMsg)
+{
+	if (!pMsg)
+	{
+		return false;
+	}
+	CSteamNetworkingMessage* const pCMsg = static_cast<CSteamNetworkingMessage* const>(pMsg);
+
+	ConnectionScopeLock connectionLock;
+	CSteamNetworkConnectionBase* pConn = GetConnectionByHandleForAPI(pCMsg->GetConnection(), connectionLock, "CanSendMessage");
+	if (!pConn)
+		return false;
+	return pConn->APICanSendMessage(pCMsg);
+}
+
+
 void CSteamNetworkingSockets::SendMessages( int nMessages, SteamNetworkingMessage_t *const *pMessages, int64 *pOutMessageNumberOrResult )
 {
 

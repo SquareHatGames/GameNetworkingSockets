@@ -42,6 +42,7 @@ class ISteamNetworkingFakeUDPPort;
 class ISteamNetworkingSockets
 {
 public:
+	virtual bool CanSendMessage(SteamNetworkingMessage_t* const pMsg) = 0;
 
 	/// Creates a "server" socket that listens for clients to connect to by 
 	/// calling ConnectByIPAddress, over ordinary UDP (IPv4 or IPv6)

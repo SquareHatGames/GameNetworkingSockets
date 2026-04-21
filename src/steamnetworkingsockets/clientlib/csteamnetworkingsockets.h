@@ -80,6 +80,7 @@ public:
 	}
 
 	// Implements ISteamNetworkingSockets
+	virtual bool CanSendMessage(SteamNetworkingMessage_t* const pMsg) override;
 	virtual HSteamListenSocket CreateListenSocketIP( const SteamNetworkingIPAddr &localAddress, int nOptions, const SteamNetworkingConfigValue_t *pOptions ) override;
 	virtual HSteamNetConnection ConnectByIPAddress( const SteamNetworkingIPAddr &adress, int nOptions, const SteamNetworkingConfigValue_t *pOptions ) override;
 	virtual HSteamListenSocket CreateListenSocketP2P( int nLocalVirtualPort, int nOptions, const SteamNetworkingConfigValue_t *pOptions ) override;

@@ -393,6 +393,8 @@ public:
 	/// (E.g. loopback.)
 	virtual int64 _APISendMessageToConnection( CSteamNetworkingMessage *pMsg, SteamNetworkingMicroseconds usecNow, bool *pbThinkImmediately );
 
+	bool APICanSendMessage(CSteamNetworkingMessage* pMsg);
+
 //
 // Accessor
 //

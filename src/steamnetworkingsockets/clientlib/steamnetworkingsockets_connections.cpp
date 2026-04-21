@@ -2101,6 +2101,17 @@ int64 CSteamNetworkConnectionBase::_APISendMessageToConnection( CSteamNetworking
 	return SNP_SendMessage( pMsg, usecNow, pbThinkImmediately );
 }
 
+bool CSteamNetworkConnectionBase::APICanSendMessage(CSteamNetworkingMessage* pMsg)
+{
+	if (pMsg)
+	{
+		return (m_senderState.PendingBytesTotal() + pMsg->m_cbSize <= m_connectionConfig.SendBufferSize.Get());
+	}
+
+	return false;
+}
+
+
 
 EResult CSteamNetworkConnectionBase::APIFlushMessageOnConnection()
 {
